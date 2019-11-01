@@ -19,7 +19,7 @@
     "http-errors": "~1.6.2",
     "log4js": "^5.2.2",
     "mongodb": "^3.1.8",
-    "mongoose": "^5.3.7",
+    "mongoose": "^5.7.5",
     "mongoose-auto-increment": "^5.0.1",
     "node-fetch": "^2.3.0",
     "yargs": "^12.0.2"
