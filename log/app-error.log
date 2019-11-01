@@ -1,0 +1,2 @@
+[2019-10-30T23:18:14.333][ERROR  3948  http] 127.0.0.1 - - "GET / HTTP/1.1" 404 1755 "" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36"
+[2019-10-30T23:18:14.488][ERROR  3948  http] 127.0.0.1 - - "GET /favicon.ico HTTP/1.1" 404 842 "http://127.0.0.1:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36"
