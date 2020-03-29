@@ -1,0 +1,15 @@
+import { Controller, Get } from '@nestjs/common';
+import { Tag } from '../entities/tag.entity';
+import { TagService } from './tag.service';
+import { Result } from 'src/common/result.interface';
+
+@Controller('tag')
+export class TagController {
+  constructor(private readonly tagService: TagService) {}
+
+  @Get('list')
+  async findById(): Promise<Result<Tag>> {
+    const tagList = await this.tagService.getTagList();
+    return { code: '01', msg: '查询成功', list: tagList.list, count: tagList.count };
+  }
+}
