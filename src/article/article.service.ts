@@ -2,9 +2,12 @@ import { Injectable, HttpException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, getRepository, Brackets } from 'typeorm';
 
+import { format } from 'date-fns';
+
 import { Article } from '../entities/article.entity';
 import { QueryResult } from 'src/common/common.interface';
 import { GetArticleDto } from './dtos/get-article.dto';
+import { CreateArticleDto } from './dtos/create-article.dto';
 
 @Injectable()
 export class ArticleService {
@@ -14,9 +17,17 @@ export class ArticleService {
    * 新建文章
    * @param article 文章实体
    */
-  async createArticle(article: Article): Promise<void> {
-    const _article = await this.articleRepo.findOne({ title: article.title });
+  async createArticle(body: CreateArticleDto): Promise<void> {
+    const _article = await this.articleRepo.findOne({ title: body.title });
     if (_article) throw new HttpException('该文章已存在', 403);
+    const article = new Article();
+    // 赋值给article对象
+    for (const key in body) {
+      if (body[key] !== null || body[key] !== undefined || body[key] !== '') {
+        article[key] = body[key];
+      }
+    }
+    article.createdTime = format(new Date(), 'yyyy-MM-dd HH:mm:ss');
     await this.articleRepo.insert(article);
   }
 

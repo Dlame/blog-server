@@ -6,4 +6,12 @@ export class CreateArticleDto {
 
   @IsNotEmpty()
   readonly content: string;
+
+  createdTime?: string;
+
+  updatedTime?: string;
+
+  readonly categories?: string[];
+
+  readonly tags: string[];
 }

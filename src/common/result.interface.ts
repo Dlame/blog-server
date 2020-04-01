@@ -1,6 +1,6 @@
-export interface Result<T> {
+export interface Result {
   code: string;
-  msg: string;
-  list?: Array<T>;
+  message: string;
+  list?: Array<any>;
   count?: number;
 }

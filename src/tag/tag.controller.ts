@@ -8,8 +8,8 @@ export class TagController {
   constructor(private readonly tagService: TagService) {}
 
   @Get('list')
-  async findById(): Promise<Result<Tag>> {
+  async findById(): Promise<Result> {
     const tagList = await this.tagService.getTagList();
-    return { code: '01', msg: '查询成功', list: tagList.list, count: tagList.count };
+    return { code: '01', message: '查询成功', list: tagList.list, count: tagList.count };
   }
 }

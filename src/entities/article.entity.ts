@@ -11,7 +11,7 @@ export class Article {
   title: string;
   @Column({ type: 'text', comment: '文章内容' })
   content: string;
-  @Column({ comment: '阅读数' })
+  @Column({ comment: '阅读数', default: 0 })
   viewCount: number;
   @Column({ type: 'date', comment: '文章创作时间' })
   createdTime: string;

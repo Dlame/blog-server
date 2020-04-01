@@ -8,8 +8,8 @@ export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
 
   @Get('list')
-  async findById(): Promise<Result<Category>> {
+  async findById(): Promise<Result> {
     const categoryList = await this.categoryService.getCategoryList();
-    return { code: '01', msg: '查询成功', list: categoryList.list, count: categoryList.count };
+    return { code: '01', message: '查询成功', list: categoryList.list, count: categoryList.count };
   }
 }
