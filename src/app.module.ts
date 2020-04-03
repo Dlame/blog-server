@@ -18,7 +18,7 @@ import { TagModule } from './tag/tag.module';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: 'zz19960807',
+      password: '1234',
       database: 'blog',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,

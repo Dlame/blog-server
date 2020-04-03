@@ -9,6 +9,11 @@ import { QueryResult } from 'src/common/common.interface';
 export class TagService {
   constructor(@InjectRepository(Tag) private readonly tagRepo: Repository<Tag>) {}
 
+  async createTag(name:string):Promise<void>{
+    const tag = new Tag();
+    await this.tagRepo.insert(tag);
+  }
+
   /**
    * 获取标签列表
    */
