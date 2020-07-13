@@ -3,7 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
-import { APP_FILTER } from '@nestjs/core';
+import { APP_FILTER, APP_PIPE } from '@nestjs/core';
 
 import { HttpExceptionFilter } from './common/httpexception.filter';
 import { ParamsValidationPipe } from './pipe/paramsValidation.pipe';
@@ -18,7 +18,7 @@ import { TagModule } from './tag/tag.module';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: '1234',
+      password: 'root',
       database: 'blog',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
@@ -30,7 +30,14 @@ import { TagModule } from './tag/tag.module';
     CategoryModule,
   ],
   controllers: [AppController],
-  providers: [AppService, ParamsValidationPipe, { provide: APP_FILTER, useClass: HttpExceptionFilter }],
+  providers: [
+    AppService,
+    {
+      provide: APP_PIPE,
+      useClass: ParamsValidationPipe,
+    },
+    { provide: APP_FILTER, useClass: HttpExceptionFilter },
+  ],
 })
 export class AppModule {
   constructor(private readonly connection: Connection) {}
