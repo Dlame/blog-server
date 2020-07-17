@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
-import { Category } from './category.entity';
 import { Comment } from './comment.entity';
-import { Tag } from './tag.entity';
+import { ArticleTag } from './articleTag.entity';
+import { ArticleCategory } from './articleCategory.entity';
 
 @Entity()
 export class Article {
@@ -19,18 +19,18 @@ export class Article {
   updatedTime: string;
 
   @OneToMany(
-    type => Category,
+    type => ArticleTag,
     category => category.article,
   )
-  categories: Category[];
+  categories: ArticleCategory[];
   @OneToMany(
     type => Comment,
     comment => comment.article,
   )
   comments: Comment[];
   @OneToMany(
-    type => Tag,
+    type => ArticleCategory,
     tag => tag.article,
   )
-  tags: Tag[];
+  tags: ArticleCategory[];
 }

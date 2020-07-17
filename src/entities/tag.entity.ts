@@ -1,5 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
-import { Article } from './article.entity';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Tag {
@@ -7,13 +6,4 @@ export class Tag {
   id: number;
   @Column({ comment: '标签名' })
   name: string;
-
-  @ManyToOne(
-    type => Article,
-    article => article.tags,
-    {
-      onDelete: 'CASCADE',
-    },
-  )
-  article: Article;
 }

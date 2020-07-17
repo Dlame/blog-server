@@ -8,15 +8,15 @@ import { Article } from '../entities/article.entity';
 import { QueryResult } from 'src/common/common.interface';
 import { GetArticleDto } from './dtos/get-article.dto';
 import { CreateArticleDto } from './dtos/create-article.dto';
-import { Tag } from 'src/entities/tag.entity';
-import { Category } from 'src/entities/category.entity';
+import { ArticleTag } from 'src/entities/articleTag.entity';
+import { ArticleCategory } from 'src/entities/articleCategory.entity';
 
 @Injectable()
 export class ArticleService {
 	constructor(
 		@InjectRepository(Article) private readonly articleRepo: Repository<Article>,
-		@InjectRepository(Tag) private readonly tagRepo: Repository<Tag>,
-		@InjectRepository(Category) private readonly categoryRepo: Repository<Category>
+		@InjectRepository(ArticleTag) private readonly tagRepo: Repository<ArticleTag>,
+		@InjectRepository(ArticleCategory) private readonly categoryRepo: Repository<ArticleCategory>
 	) {}
 
 	/**
@@ -37,18 +37,18 @@ export class ArticleService {
 		await this.articleRepo.save(article);
 		// 保存标签
 		if (body.tags.length > 0) {
-			for (const name of body.tags) {
-				const tag = new Tag();
-				tag.name = name;
+			for (const id of body.tags) {
+				const tag = new ArticleTag();
+				tag.tag_id = id;
 				tag.article = article;
 				await this.tagRepo.save(tag);
 			}
 		}
 		// 保存分类
 		if (body.categories.length > 0) {
-			for (const name of body.categories) {
-				const category = new Category();
-				category.name = name;
+			for (const id of body.categories) {
+				const category = new ArticleCategory();
+				category.category_id = id;
 				category.article = article;
 				await this.categoryRepo.save(category);
 			}

@@ -9,8 +9,9 @@ import { QueryResult } from 'src/common/common.interface';
 export class TagService {
   constructor(@InjectRepository(Tag) private readonly tagRepo: Repository<Tag>) {}
 
-  async createTag(name:string):Promise<void>{
+  async createTag(name: string): Promise<void> {
     const tag = new Tag();
+    tag.name = name;
     await this.tagRepo.insert(tag);
   }
 

@@ -11,7 +11,7 @@ export class CreateArticleDto {
 
   updatedTime?: string;
 
-  readonly categories?: string[];
+  readonly categories?: number[];
 
-  readonly tags: string[];
+  readonly tags: number[];
 }
